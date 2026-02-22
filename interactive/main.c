@@ -2,6 +2,13 @@
 #include <stdlib.h>
 #include <getopt.h>
 
+
+/**
+ * for now just a copy of main.c but will become a gui version, probably raylib+imgui
+ */
+
+
+
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
@@ -41,7 +48,7 @@ void parseCommandLine(void) {
 
 		int option_index = 0;
 		int const c = getopt_long(g_argc, g_argv, "f:Ft:w:o:s:n:i:p:vt:", long_options, &option_index);
-		
+
 		if (c == -1) {
 			break;
 		}
@@ -211,7 +218,7 @@ void applyTileLayout(f2i_rgba8888_t* buffer, int width, int height, int tileWidt
 				int const offset = y*width+x;
 				scratch[offset] = buffer[i+tileRow*scratchPixelCount];
 			}
-			
+
 			memcpy(buffer+tileRow*scratchPixelCount, scratch, (size_t)scratchPixelCount * sizeof(f2i_rgba8888_t));
 		}
 	}
@@ -235,7 +242,7 @@ void processInputFile(char const* inputFilePath)
 			fseek(fh, 0, SEEK_END);
 			size_t const fileLength = ftell(fh);
 			fseek(fh, 0, SEEK_SET);
-			
+
 			if (fileLength == 0) {
 				eprintf("Failed to automatically determine length of '%s', or it's an empty file.\n", inputFilePath);
 				eprintf("If this is some unbounded device like /dev/random, please specify an explicit length with -n\n");
@@ -305,7 +312,7 @@ void processInputFile(char const* inputFilePath)
 			int const numPaletteEntries = (1 << g_indexFormat->bit_depth);
 			int const paletteSizeBytes = (g_colorFormat->bit_depth * numPaletteEntries + 7) / 8;
 			uint8_t* paletteSrcBuffer = NEW(uint8_t, paletteSizeBytes);
-			
+
 			fseek(fh, g_paletteStart, SEEK_SET);
 			size_t const paletteBytesRead = fread(paletteSrcBuffer, 1, paletteSizeBytes, fh);
 			if (paletteBytesRead < (size_t)paletteSizeBytes) {
@@ -315,7 +322,7 @@ void processInputFile(char const* inputFilePath)
 
 			f2i_rgba8888_t palette[numPaletteEntries];
 			g_colorFormat->function(palette, paletteSrcBuffer, paletteSizeBytes);
-			
+
 			int indexBuffer[width * height];
 			g_indexFormat->function(indexBuffer, srcBuffer, srcLength);
 

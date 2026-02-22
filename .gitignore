@@ -1,3 +1,9 @@
 .vscode/
+.idea/
 .DS_Store
+
+# binaries
 file2img
+ifile2img
+libfile2img.a
+*.o

@@ -1,6 +1,6 @@
-#include "indexFormatHandlers.h"
+#include "file2img/indexFormatHandlers.h"
 
-void indexFormatHandlerI4BE(int* dst, uint8_t const* src, int numBytes) {
+void f2i_indexFormatHandlerI4BE(int* dst, uint8_t const* src, int numBytes) {
 	for (int i = numBytes; i-- != 0;) {
 		uint8_t const value = *src++;
 		uint8_t const hi = (value >> 4);
@@ -10,7 +10,7 @@ void indexFormatHandlerI4BE(int* dst, uint8_t const* src, int numBytes) {
 	}
 }
 
-void indexFormatHandlerI4LE(int* dst, uint8_t const* src, int numBytes) {
+void f2i_indexFormatHandlerI4LE(int* dst, uint8_t const* src, int numBytes) {
 	for (int i = numBytes; i-- != 0;) {
 		uint8_t const value = *src++;
 		uint8_t const hi = (value >> 4);
@@ -20,7 +20,7 @@ void indexFormatHandlerI4LE(int* dst, uint8_t const* src, int numBytes) {
 	}
 }
 
-void indexFormatHandlerI8(int* dst, uint8_t const* src, int numBytes) {
+void f2i_indexFormatHandlerI8(int* dst, uint8_t const* src, int numBytes) {
 	for (int i = numBytes; i-- != 0; ++dst, ++src) {
 		*dst = (int)*src;
 	}
