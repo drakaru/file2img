@@ -161,6 +161,7 @@ file2img [options] <input file>
 -n,--length          Specify the input byte count (default: all of them)
 -i,--index-format    Specify the index map format (default: none)
 -p,--palette-start   Specify the palette start offset (default: 0)
+-v,--flip-vertically Specify the the output is flipped vertically
 ```
 
 
