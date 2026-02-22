@@ -57,9 +57,9 @@ void parseCommandLine(void) {
 			case 'f': {
 				char const* formatName = optarg;
 				g_blockFormat = NULL;
-				g_colorFormat = findColorFormat(formatName);
+				g_colorFormat = f2i_findColorFormat(formatName);
 				if (!g_colorFormat) {
-					g_blockFormat = findBlockFormat(formatName);
+					g_blockFormat = f2i_findBlockFormat(formatName);
 					if (!g_blockFormat) {
 						eprintf("Unknown format specified: %s\n", formatName);
 						exit(1);
@@ -69,7 +69,7 @@ void parseCommandLine(void) {
 			}
 			case 'i': {
 				char const* formatName = optarg;
-				g_indexFormat = findIndexFormat(formatName);
+				g_indexFormat = f2i_findIndexFormat(formatName);
 				if (!g_indexFormat) {
 					eprintf("Unknown index format specified: %s\n", formatName);
 					exit(1);
@@ -177,7 +177,7 @@ void earlySanityCheck(void) {
 		exit(1);
 	}
 	if (!g_colorFormat && !g_blockFormat && !g_indexFormat) {
-		g_colorFormat = findColorFormat("l8");
+		g_colorFormat = f2i_findColorFormat("l8");
 	}
 }
 

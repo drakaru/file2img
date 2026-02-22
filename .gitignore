@@ -3,7 +3,8 @@
 .DS_Store
 
 # binaries
-./file2img
-./ifile2img
+file2img
+!file2img/
+ifile2img
 libfile2img.a
 *.o
